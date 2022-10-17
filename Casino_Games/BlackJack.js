@@ -4,14 +4,15 @@
 //  console.log((Math.floor(Math.random() * 13)) + 1);
 
 let playGame = confirm("Would you like to play Blackjack?")
+let dealerHand;
 
 while (playGame == true) {
     let playerHand = newHand();
     let playerAction = "";
-    let dealerHand;
 // PLAYER SIDE TO HIT STAY OR BUST
     do {
         playerAction = prompt("Type 'hit' to draw, 'stay' to stay.")
+
         if (playerAction == 'hit') {
             let newcard = draw()
             alert("You've drawn a " + cardType(newcard));
@@ -28,6 +29,7 @@ while (playGame == true) {
 
     if (playerHand < 22) {
         let dealerHand = dealerNew();
+
         do {
             if (dealerHand > 17 && dealerHand <= 21) {
                 alert("Dealer stays on " + dealerHand);
