@@ -26,25 +26,6 @@ if (playerHand > 21) {
     alert("Player had busted. Better luck next time!");
 }
 
-
-
-
-
-//    DUPLICATE INFO?
-// if (playerAction == 'hit'){
-//     let newcard = draw()
-//     alert("You've drawn a " + cardType(newcard));
-//     playerHand = playerHand + cardValue(newcard);
-//     alert("Your new total is: " + playerHand);
-//     do{
-//         prompt("Type 'hit' to draw, 'stay' to stay.")
-//     } while (playerHand <= 21)
-//     alert("Sorry you busted.")
-// }
-// else if (playerAction == 'stay') {
-//     console.log("Player stays on " + playerHand);
-// }
-
 function draw (){
     return ((Math.floor(Math.random() * 13)) + 1);
 }
