@@ -120,15 +120,12 @@ function cardValue (x){
 
 function newHand (){
     let firstCard = draw();
-    console.log("First card: " + cardType(firstCard) + " Value of (" + cardValue(firstCard) + ")");
-
     let secondCard = draw();
-    cardType(secondCard);
-    console.log("Second card: " + cardType(secondCard) + " Value of (" + cardValue(secondCard) + ")");
 
     let total = 0;
     total = cardValue(firstCard) + cardValue(secondCard);
-    console.log("Current Hand Total: " + total);
+
+    alert("Your hand: " + cardType(firstCard) + " & " + cardType(secondCard));
 
     alert("Your hand current total: " + total);
     return total;
