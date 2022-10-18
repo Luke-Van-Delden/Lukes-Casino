@@ -9,6 +9,8 @@
 // Multiple Hands
 
 
+// ****** FIX THE IFS AT THE BOTTOM - Losing by bust vs by comparison
+
 //  Generates random number 1-13
 //  Meant to signify Ace, 2, 3... etc Jack, Queen, King
 //  console.log((Math.floor(Math.random() * 13)) + 1);
