@@ -7,6 +7,7 @@
 // Tips or "What does the book say?"
 // Double Down / Split options
 // Multiple Hands
+// Add auto STAY on 21 with message
 
 
 // ****** FIX THE IFS AT THE BOTTOM - Losing by bust vs by comparison
@@ -28,17 +29,28 @@ while (playGame == true) {
         if (playerAction == 'hit') {
             let newcard = draw();
             playerHand = playerHand + cardValue(newcard);
-            alert("You've drawn a " + cardType(newcard) + "\n Your hand: " + playerHand);
             if (playerHand > 21) {
-                alert("Player has busted with " + playerHand);
+                alert("Player draws a " + cardType(newcard) + ".\nPlayer Hand: " + playerHand + ". You cannot draw anymore cards.");
             }
+            else if (playerHand == 21) {
+                alert("Player draws a " + cardType(newcard) + ".\nPlayer Hand: 21");
+                break;
+            }
+            else {
+                alert("Player draws a " + cardType(newcard) + "\nPlayer Hand: " + playerHand);
+            }
+            // if (playerHand > 21) {
+            //     alert("Player has busted with " + playerHand);
+            // }
         }
         else if (playerAction == 'stay') {
             alert("Player stays on " + playerHand + "\nPlayer hand: " + playerHand);
             break;
         }
     } while (playerHand <= 21)
-    alert("Dealers reveals: " + dealerHand + "\nPlayer's Hand :" + playerHand)
+    if (playerHand < 22) {
+        alert("Dealers reveals: " + dealerHand + "\nPlayer's Hand: " + playerHand)
+    }
     if (playerHand < 22) {
         do {
             if (dealerHand > 17 && dealerHand <= 21) {
@@ -50,20 +62,33 @@ while (playGame == true) {
             } else if (dealerHand < 17) {
                 let newcard = draw();
                 dealerHand = dealerHand + cardValue(newcard);
-                alert("Dealer draws a " + cardType(newcard) + "\nDealer's new total is: " + dealerHand + "\nPlayer's hand: " + playerHand);
+                alert("Dealer draws a " + cardType(newcard) + "\nDealer's Hand: " + dealerHand + "\nPlayer's Hand: " + playerHand);
             }
         } while (dealerHand < 100)
     }
-    if (playerHand > dealerHand && playerHand <= 21 && dealerHand < 21) {
+    // PLAYER DOES NOT BUST, DEALER DOES NOT BUST, PLAYER WINS
+    if (playerHand > dealerHand && playerHand <= 21 && dealerHand <= 21) {
         alert("Players " + playerHand + " beats dealers " + dealerHand + "\nWinner Winner Chicken Dinner!");
-        alert("Player wins lotsa money");
-    } else if (playerHand <= 21 && dealerHand > 21) {
-        alert("Winner Winner Chicken Dinner!")
-    } else if (playerHand == dealerHand) {
-        alert("Its a push. Both dealer and player have " + playerHand);
-    } else {
-        alert("Dealer's " + dealerHand + " beats Player's " + playerHand + "\nluck next time!");
+   //     alert("Player wins lotsa money");
     }
+    // PLAYER DOES NOT BUST, DEALER BUSTS, PLAYER WINS
+    else if (playerHand <= 21 && dealerHand > 21) {
+        alert("Winner Winner Chicken Dinner!")
+    }
+    // PLAYER AND DEALER TIE - PUSH
+    else if (playerHand == dealerHand) {
+        alert("Its a push. Both dealer and player have " + playerHand + ".");
+    }
+    // PLAYER BUSTS, DEALER DOES NOT, PLAYER LOSES
+    else if (playerHand > 21){
+        alert("Player busted with " + playerHand + ".\nBetter luck next time!")
+    }
+    // PLAYER DOES NOT BUST, DEALER DOES NOT BUST, DEALER WINS
+    else  {
+        alert("Dealer's " + dealerHand + " beats Player's " + playerHand + "\nBetter luck next time!");
+    }
+    //(dealerHand > playerHand && dealerHand <= 21)
+
     playGame = confirm("Would you like to play Blackjack?")
 
 }
@@ -167,9 +192,8 @@ function newHand (){
     let total = 0;
     total = cardValue(firstCard) + cardValue(secondCard);
 
-    alert("Your hand: " + cardType(firstCard) + " & " + cardType(secondCard));
+    alert("Player draws " + cardType(firstCard) + " " + cardType(secondCard) + "\nPlayer Hand: " + total);
 
-    alert("Your hand current total: " + total);
     return total;
 
 }
