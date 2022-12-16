@@ -9,6 +9,7 @@
 // Multiple Hands
 // Add auto STAY on 21 with message
 
+(() => {
 
 // ****** FIX THE IFS AT THE BOTTOM - Losing by bust vs by comparison
 
@@ -211,3 +212,5 @@ function dealerNew() {
     return total;
 
 }
+
+})();

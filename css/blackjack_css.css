@@ -12,24 +12,36 @@
     display: flex;
 }
 
-/*ID's*/
+.textcolor {
+    color: blanchedalmond;
+}
 
-#nameOfGame{
+.fontshadowing{
     color: white;
     font-family: 'Lobster', cursive;
     text-decoration: underline;
     text-shadow: 1px 1px 2px black, 0 0 1em gold, 0 0 0.2em blue;
 }
 
+.altshadowing{
+    color: white;
+    font-family: 'Lobster', cursive;
+    text-decoration: underline;
+    text-shadow: 1px 1px 2px black, 0 0 1em gold, 0 0 0.2em blue;
+}
+
+/*ID's*/
+
 #playerNamer{
-    width: 30vw;
+    width: 75%;
     font-size: 2em;
+    background-color: blanchedalmond;
 }
 
 #whatShouldWe{
     color: black;
     font-family: 'Lobster', cursive;
-    text-shadow: 1px 1px 2px white, 0 0 1em blanchedalmond, 0 0 0.2em blue;
+    text-shadow: 1px 1px 2px blanchedalmond, 0 0 1em blanchedalmond, 0 0 0.2em blue;
 }
 
 #montyPython{
@@ -37,6 +49,11 @@
     margin: auto;
 }
 
+#kdawg{
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+}
 
 
 /* The Modal (background) */
@@ -55,24 +72,27 @@
 
 /* Modal Content/Box */
 .modal-content {
-    background-color: #fefefe;
+    background-image: url("/images/shufflebackground.gif");
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+.modalbtn{
+    width: 75%;
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+/*!* The Close Button *!*/
+/*.close {*/
+/*    color: #aaa;*/
+/*    float: right;*/
+/*    font-size: 28px;*/
+/*    font-weight: bold;*/
+/*}*/
+
+/*.close:hover,*/
+/*.close:focus {*/
+/*    color: black;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*}*/

@@ -15,26 +15,32 @@
 <!--        Image of Title-->
         <div id="imageOfGame"></div>
 <!--        Title Text-->
-        <div id="nameOfGame"></div>
+        <div id="nameOfGame" class="fontshadowing"></div>
     </div>
 </header>
+
+<!-- Space where dealer-->
+<div class="container">
+    <div class="row">
+        <div id="playerHand" class="d-flex justify-content-center col-6 textcolor wrap altshadowing"></div>
+        <div id="dealerHand" class="d-flex justify-content-center col-6 textcolor wrap altshadowing"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row" id="actionBar"></div>
+</div>
+
+
 <!-- The Modal -->
 <div id="startUp" class="modal">
     <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2 id="whatShouldWe" class="text-center mb-2">What should we call you?</h2>
-        <img src="images/whatisyourname.gif" alt="montypython" id="montyPython">
-        <input type='textarea' value='' placeholder="Enter name here" id="playerNamer" class="mb-4">
-        <button type="button" class="btn btn-success mb-2 acceptGame">Ok!</button>
-        <button type="button" class="btn btn-danger endGame">Shut up and deal</button>
+    <div class="modal-content justify-content-center align-items-center">
+        <h2 id="whatShouldWe" class="text-center mb-1">What should we call you?</h2>
+        <input type='textarea' value='' placeholder="Enter name here" id="playerNamer" class="mb-3 text-center fontshadowing">
+        <button type="button" class="btn modalbtn btn-success mb-1 acceptGame fontshadowing">Ok!</button>
+        <button type="button" class="btn modalbtn btn-danger endGame fontshadowing">Shut up and deal</button>
     </div>
 </div>
-<div id="gameArea">
-</div>
-
-
-
 
 <!-- Scripts for Bootstrap, JQuery, JS file-->
 <div>
