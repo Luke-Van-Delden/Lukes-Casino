@@ -17,12 +17,16 @@
 //  console.log((Math.floor(Math.random() * 13)) + 1);
 
 let playGame = confirm("Would you like to play Blackjack?")
+// let playGame =
+
 
 while (playGame == true) {
     let playerHand = newHand();
     let dealerHand = dealerNew();
     let playerAction = "";
+
 // PLAYER SIDE TO HIT STAY OR BUST
+
     do {
         playerAction = prompt("Type 'hit' to draw, 'stay' to stay." + "\nPlayer hand: " + playerHand)
 
@@ -31,19 +35,16 @@ while (playGame == true) {
             playerHand = playerHand + cardValue(newcard);
             if (playerHand > 21) {
                 alert("Player draws a " + cardType(newcard) + ".\nPlayer Hand: " + playerHand + ". You cannot draw anymore cards.");
-            }
-            else if (playerHand == 21) {
+            } else if (playerHand == 21) {
                 alert("Player draws a " + cardType(newcard) + ".\nPlayer Hand: 21");
                 break;
-            }
-            else {
+            } else {
                 alert("Player draws a " + cardType(newcard) + "\nPlayer Hand: " + playerHand);
             }
             // if (playerHand > 21) {
             //     alert("Player has busted with " + playerHand);
             // }
-        }
-        else if (playerAction == 'stay') {
+        } else if (playerAction == 'stay') {
             alert("Player stays on " + playerHand + "\nPlayer hand: " + playerHand);
             break;
         }
@@ -69,7 +70,7 @@ while (playGame == true) {
     // PLAYER DOES NOT BUST, DEALER DOES NOT BUST, PLAYER WINS
     if (playerHand > dealerHand && playerHand <= 21 && dealerHand <= 21) {
         alert("Players " + playerHand + " beats dealers " + dealerHand + "\nWinner Winner Chicken Dinner!");
-   //     alert("Player wins lotsa money");
+        //     alert("Player wins lotsa money");
     }
     // PLAYER DOES NOT BUST, DEALER BUSTS, PLAYER WINS
     else if (playerHand <= 21 && dealerHand > 21) {
@@ -80,11 +81,11 @@ while (playGame == true) {
         alert("Its a push. Both dealer and player have " + playerHand + ".");
     }
     // PLAYER BUSTS, DEALER DOES NOT, PLAYER LOSES
-    else if (playerHand > 21){
+    else if (playerHand > 21) {
         alert("Player busted with " + playerHand + ".\nBetter luck next time!")
     }
     // PLAYER DOES NOT BUST, DEALER DOES NOT BUST, DEALER WINS
-    else  {
+    else {
         alert("Dealer's " + dealerHand + " beats Player's " + playerHand + "\nBetter luck next time!");
     }
     //(dealerHand > playerHand && dealerHand <= 21)
@@ -93,11 +94,11 @@ while (playGame == true) {
 
 }
 
-function draw (){
+function draw() {
     return ((Math.floor(Math.random() * 13)) + 1);
 }
 
-function cardType (x) {
+function cardType(x) {
     switch (x) {
         case 1:
             return "Ace (1 or 11)";
@@ -141,7 +142,7 @@ function cardType (x) {
     }
 }
 
-function cardValue (x){
+function cardValue(x) {
     switch (x) {
         case 1:
             return 1;
@@ -185,7 +186,7 @@ function cardValue (x){
     }
 }
 
-function newHand (){
+function newHand() {
     let firstCard = draw();
     let secondCard = draw();
 
@@ -198,7 +199,7 @@ function newHand (){
 
 }
 
-function dealerNew (){
+function dealerNew() {
     let firstCard = draw();
     let secondCard = draw();
 
