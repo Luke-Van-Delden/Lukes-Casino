@@ -139,14 +139,14 @@
                 if (dealerHand.value >= 17 && dealerHand.value <= 21) {
                     clearInterval(waitingToDraw);
                     $('#actionBar').empty()
-                    $('#dealerHand').html(`<h1 class="">Dealer ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
+                    $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
                     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer stays on ${dealerHand.value}.</h1>`)
                     if (dealerHand.value > playerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer wins with ${dealerHand.value}.</h1>`)
                         var dealerwinner = setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
-                        }, 3000);
+                        }, 1000);
                     } else if (playerHand.value > dealerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} wins with ${playerHand.value}.</h1>`)
                         var playerwinner = setTimeout(function () {
@@ -165,13 +165,13 @@
                         dealerHand.value = dealerHand.value - 10
                     if (dealerHand.value < 17) {
                         drawCard(dealerHand)
-                        $('#dealerHand').html(`<h1 class="">Dealer ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
+                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
                     } else if (dealerHand.value > 21) {
                         clearInterval(waitingToDraw)
-                        $('#dealerHand').html(`<h1 class="">Dealer ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
+                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
                         $('#actionBar').empty()
-                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS. .</h1>`)
+                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS!!!</h1>`)
                         var timeoutId = setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
@@ -180,14 +180,14 @@
                 } else if (dealerHand.value > 21) {
                     clearInterval(waitingToDraw)
                     $('#actionBar').empty()
-                    $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS. .</h1>`)
+                    $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS!!!</h1>`)
                     var timeoutId = setTimeout(function () {
                         $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                         clickStart()
                     }, 1000);
                 } else if (dealerHand.value < 17) {
                     drawCard(dealerHand)
-                    $('#dealerHand').html(`<h1 class="">Dealer ${dealerHand.value} ${dealerHand.drawn}</h1>`)
+                    $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn}</h1>`)
                     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
                 }
             }, 1000);
