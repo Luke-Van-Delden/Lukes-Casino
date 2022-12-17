@@ -98,11 +98,6 @@
         if (playerName === "") {
             playerName = "Player"
         }
-        dealerHand = {
-            value: 11,
-            drawn: ["Ace"],
-            aces: 1
-        }
         $('#startUp').css('display', "none");
         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>Dealer showing ${dealerHand.drawn}</h1>`)
         $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>You've drawn ${playerHand.drawn}</h1>`)
