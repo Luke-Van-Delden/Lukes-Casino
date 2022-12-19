@@ -12,7 +12,7 @@
     // Create Header at top, create Player and Dealer Hand Object Initial values
     $(document).ready(function () {
         $('#imageOfGame').html(`<img src="images/blackjackTitle.jpeg" alt="Blackjack Title Image" class="header">`)
-        $('#nameOfGame').html(`<h1 class="header align-items-center">Welcome to Luke's Blackjack Table</h1>`)
+        $('#nameOfGame').html(`<h1 class="header align-items-center d-flex justify-content-center">Welcome to Luke's Blackjack Table</h1>`)
         $('body').addClass('feltBackground')
         callModal()
     });

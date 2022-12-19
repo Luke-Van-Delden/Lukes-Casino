@@ -8,8 +8,9 @@
 }
 
 .header{
-    height: 23vh;
+    height: 20vh;
     display: flex;
+    background-color: black;
 }
 
 .textcolor {
