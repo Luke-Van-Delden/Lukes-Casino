@@ -55,11 +55,9 @@
     height: 50vh;
     margin: auto;
 }
-
-#actionBar{
-
+#tips{
+    color: white;
 }
-
 
 /* The Modal (background) */
 .modal {

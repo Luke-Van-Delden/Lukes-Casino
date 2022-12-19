@@ -1,12 +1,14 @@
 "use strict";
 
-//TODO: Add Ace changing
+//TODO: Create Cheatsheat for best play - Object, array, or if statement
+// CSS the Cards
 // add card images for each
 // add animation
 // create navbar at top to take to other games
 // refine style
 // link to blackjack to learn for current value of cards (Think for me button)
 // Track Chips / bets
+// ON/Off switch for quickdeal
 
 (() => {
     // Create Header at top, create Player and Dealer Hand Object Initial values
@@ -101,8 +103,9 @@
         $('#startUp').css('display', "none");
         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>Dealer showing ${dealerHand.drawn}</h1>`)
         $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>You've drawn ${playerHand.drawn}</h1>`)
-        $('#actionBar').html(`<button type="button" class="btn btn-success mb-2 hit fontshadowing">Hit!</button>`)
-        $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 stay fontshadowing">Stay!</button>`)
+        $('#actionBar').html(`<button type="button" class="btn btn-success mb-2 hit fontshadowing barButtons">Hit!</button>`)
+        $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 stay fontshadowing barButtons">Stay!</button>`)
+        $('#asktips').html(`<button type="button" class="btn btn-warning mb-2 tips fontshadowing barButtons" id="tips">What's the book say?</button>`)
 
         //Cheat code for Kara
         if (playerName === "kdawg") {
@@ -116,6 +119,11 @@
             $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>You've drawn ${playerHand.drawn}</h1>`)
         }
 
+        $('#asktips').click(function () {
+            $('#asktips').append(`<div class="d-flex justify-content-center"><h1 class="altshadowing">The book says to !</h1></div>`)
+        })
+
+
         $('.hit').click(function () {
             drawCard(playerHand)
             $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>You've drawn ${playerHand.drawn}</h1>`)
@@ -125,6 +133,7 @@
                 displayPandD()
             } else if (playerHand.value > 21) {
                 $('#actionBar').html(`<h1 class="text-center altshadowing" id="busted">${playerName} busts with ${playerHand.value}</h1>`)
+                $('#asktips').empty()
                 var timeoutId = setTimeout(function () {
                     $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                     clickStart()
@@ -133,8 +142,8 @@
         })
 
         $('.stay').click(function () {
+            $('#asktips').empty()
             $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} stays with ${playerHand.value}. Dealer is drawing.</h1>`)
-            $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 fastforward fontshadowing">Quick-Deal</button>`)
             var waitingToDraw = setInterval(function () {
                 if (dealerHand.value >= 17 && dealerHand.value <= 21) {
                     clearInterval(waitingToDraw);
