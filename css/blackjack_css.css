@@ -99,3 +99,34 @@
 /*    text-decoration: none;*/
 /*    cursor: pointer;*/
 /*}*/
+
+/* Source = https://github.com/selfthinker/CSS-Playing-Cards/blob/master/cards.css*/
+.playingCard {
+    display: flex;
+    width: 3em;
+    height: 4.4em;
+    border: 2px solid #666;
+    border-radius: .3em;
+    -moz-border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -khtml-border-radius: .3em;
+    padding: .25em;
+    margin: 0 .5em .5em 0;
+    text-align: center;
+    font-size: .5em; /* @change: adjust this value to make bigger or smaller cards */
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    position: relative;
+    background-color: #fff;
+    -moz-box-shadow: .2em .2em .5em #333;
+    -webkit-box-shadow: .2em .2em .5em #333;
+    box-shadow: .2em .2em .5em #333;
+}
+.cardText {}
+
+.red{
+    color: red;
+}
+.black{
+    color: black;
+}
