@@ -16,6 +16,13 @@
 .textcolor {
     color: blanchedalmond;
 }
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}
 
 .fontshadowing {
     color: white;
@@ -45,9 +52,31 @@
     text-shadow: 1px 1px 2px blanchedalmond, 0 0 1em blanchedalmond, 0 0 0.2em blue;
 }
 
-#montyPython {
-    width: 50%;
-    margin: auto;
+/*#montyPython {*/
+/*    width: 50%;*/
+/*    margin: auto;*/
+/*}*/
+#setInitialBet {
+    width: 35%;
+}
+#currentChips {
+    position: fixed;
+    font-size: 2em;
+    left: 0px;
+    bottom: 0px;
+    text-decoration: none;
+}
+
+#currentBet {
+    position: fixed;
+    font-size: 2em;
+    right: 0px;
+    bottom: 0px;
+    text-decoration: none;
+}
+
+#noChipsRestart {
+    color: red;
 }
 
 #kdawg {
@@ -88,7 +117,12 @@
     width: 75%;
 }
 
-/*!* The Close Button *!*/
+.modalTextSizing {
+    width: 60%;
+    font-size: 1.5em;
+    background-color: blanchedalmond;
+}
+/*!* The Close Button for Modal *!*/
 /*.close {*/
 /*    color: #aaa;*/
 /*    float: right;*/
@@ -126,42 +160,8 @@
     box-shadow: .2em .2em .5em #333;
 }
 
-.cardText {
-}
-
-.red {
-    color: red;
-}
-
-.black {
-    color: black;
-}
-
-#currentChips{
-    position: fixed;
-    font-size: 2em;
-    left: 0px;
-    bottom: 0px;
-    text-decoration: none;
-}
-#currentBet{
-    position: fixed;
-    font-size: 2em;
-    right: 0px;
-    bottom: 0px;
-    text-decoration: none;
-}
 
 
-.modalTextSizing{
-    width: 60%;
-    font-size: 1.5em;
-    background-color: blanchedalmond;
-}
 
-#setInitialBet {
-    width: 35%;
-}
-#noChipsRestart {
-    color: red;
-}
+
+

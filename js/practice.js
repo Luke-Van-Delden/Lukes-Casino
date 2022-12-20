@@ -123,11 +123,11 @@
             playerName = "Player"
         }
         let setChips = $('#setChips').val()
-        if (setChips === ""){
+        if (setChips === "") {
             setChips = 10000
         }
         let setBet = $('#setInitialBet').val()
-        if (setBet === ""){
+        if (setBet === "") {
             setBet = 500
         }
         if (numberOfHands === 0) {
@@ -144,20 +144,20 @@
         $('#asktips').html(`<button type="button" class="btn btn-warning mb-2 tips fontshadowing barButtons" id="tips">What's the book say? (Not Currently Functional)</button>`)
 
         // Player runs out of chips
-        if (playerHand.chipCount <= 0){
+        if (playerHand.chipCount <= 0) {
             document.documentElement.innerHTML = '';
             $('body').css('background-image', 'url("/images/bouncer.gif")').css('background-size', '100vw 100vh')
             setTimeout(function () {
                 let counter = 0
-                setInterval(function() {
-                    if (counter < 1){
-                    $('body').append(`<button style='color: red; font-size: 6em; width: 100vw; background-color: black' class="noChipsRestart" onClick="window.location.reload();">CLICK HERE TO CHANGE IDENTITY AND TAKE OUT HIGH INTEREST LOAN AND START OVER</button>`)
-                counter ++
-                    }else {
+                setInterval(function () {
+                    if (counter < 1) {
+                        $('body').append(`<button style='color: red; font-size: 6em; width: 100vw; background-color: black' class="noChipsRestart" onClick="window.location.reload();">CLICK HERE TO CHANGE IDENTITY AND TAKE OUT HIGH INTEREST LOAN AND START OVER</button>`)
+                        counter++
+                    } else {
                         clearInterval()
                     }
 
-                    },200)
+                }, 200)
             }, 13000)
         }
         //Cheat code for Kara
