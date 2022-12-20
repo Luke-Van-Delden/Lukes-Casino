@@ -12,6 +12,9 @@
     display: flex;
     background-color: black;
 }
+.hidden {
+    display: none;
+}
 
 .textcolor {
     color: blanchedalmond;
@@ -86,6 +89,12 @@
 }
 
 #tips {
+    color: white;
+}
+#doubleDown{
+    color: white;
+}
+#split {
     color: white;
 }
 

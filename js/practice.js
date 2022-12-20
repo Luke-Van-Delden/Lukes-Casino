@@ -25,13 +25,17 @@
         value: 0,
         drawn: [],
         aces: 0,
-        chipCount: 0
+        chipCount: 0,
+        splitit: []
     };
     var dealerHand = {
         value: 0,
         drawn: [],
-        aces: 0
+        aces: 0,
+        splitit: []
     };
+
+    var hitCounter = 0
 
     var numberOfHands = 0
     const heart = `<span class="red">&hearts;</span>`
@@ -50,65 +54,76 @@
                 x.value += 11;
                 x.drawn.push(frontdiv + "Ace" + randomSuit() + closediv);
                 x.aces += 1
+                x.splitit.push("Ace")
                 break;
             case 2:
                 x.value += 2;
                 x.drawn.push(frontdiv + "2" + randomSuit() + closediv);
-
+                x.splitit.push("2")
                 break;
             case 3:
                 x.value += 3;
                 x.drawn.push(frontdiv + "3" + randomSuit() + closediv);
+                x.splitit.push("3")
 
                 break;
             case 4:
                 x.value += 4;
                 x.drawn.push(frontdiv + "4" + randomSuit() + closediv);
+                x.splitit.push("4")
 
                 break;
             case 5:
                 x.value += 5;
                 x.drawn.push(frontdiv + "5" + randomSuit() + closediv);
+                x.splitit.push("5")
 
                 break;
             case 6:
                 x.value += 6;
                 x.drawn.push(frontdiv + "6" + randomSuit() + closediv);
+                x.splitit.push("6")
 
                 break;
             case 7:
                 x.value += 7;
                 x.drawn.push(frontdiv + "7" + randomSuit() + closediv);
+                x.splitit.push("7")
 
                 break;
             case 8:
                 x.value += 8;
                 x.drawn.push(frontdiv + "8" + randomSuit() + closediv);
+                x.splitit.push("8")
 
                 break;
             case 9:
                 x.value += 9;
                 x.drawn.push(frontdiv + "9" + randomSuit() + closediv);
+                x.splitit.push("9")
 
                 break;
             case 10:
                 x.value += 10;
                 x.drawn.push(frontdiv + "10" + randomSuit() + closediv);
-
+                x.splitit.push("10")
                 break;
             case 11:
                 x.value += 10;
                 x.drawn.push(frontdiv + "J" + randomSuit() + closediv);
+                x.splitit.push("Jack")
 
                 break;
             case 12:
                 x.value += 10;
                 x.drawn.push(frontdiv + "Q" + randomSuit() + closediv);
+                x.splitit.push("Queen")
 
                 break;
             case 13:
                 x.value += 10;
                 x.drawn.push(frontdiv + "K" + randomSuit() + closediv);
+                x.splitit.push("King")
 
                 break;
         }
@@ -144,6 +159,14 @@
         $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
         $('#actionBar').html(`<button type="button" class="btn btn-success mb-2 hit fontshadowing barButtons">Hit!</button>`)
         $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 stay fontshadowing barButtons">Stay!</button>`)
+        $('#actionBar').append(`<button type="button" class="btn btn-info mb-2 double fontshadowing barButtons hidden" id="doubleDown">Double Down!</button>`)
+
+        // Split appears only when splits available, doesn't create additional hands
+        if (playerHand.splitit[0] == playerHand.splitit[1]) {
+            $('#actionBar').append(`<button type="button" class="btn btn-info mb-2 split fontshadowing barButtons hidden" id="split">Split! (Working on functionality)</button>`)
+        }
+
+
         $('#asktips').html(`<button type="button" class="btn btn-warning mb-2 tips fontshadowing barButtons" id="tips">What's the book say? (Not Currently Functional)</button>`)
 
         // Player runs out of chips
@@ -160,7 +183,6 @@
                     } else {
                         clearInterval()
                     }
-
                 }, 200)
             }, 1000)
         }
@@ -183,6 +205,7 @@
 
         $('.hit').click(function () {
             drawCard(playerHand)
+            $('#doubleDown').css('display', 'none')
             $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
             if (playerHand.value > 21 && playerHand.aces > 0) {
                 playerHand.aces -=
@@ -201,7 +224,89 @@
             }
         })
 
-        $('.stay').click(function () {
+        $('.double').click(function () {
+            drawCard(playerHand)
+            $('#doubleDown').css('display', 'none')
+            $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
+            if (playerHand.value > 21 && playerHand.aces > 0) {
+                playerHand.aces -=
+                    playerHand.value = playerHand.value - 10
+            }
+            if (playerHand.value > 21) {
+                $('#actionBar').html(`<h1 class="text-center altshadowing" id="busted">${playerName} busts with ${playerHand.value}</h1>`)
+                $('#asktips').empty()
+                playerHand.chipCount = playerHand.chipCount - (setBet * 2)
+                $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
+                console.log(playerHand.chipCount)
+                setTimeout(function () {
+                    $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
+                    clickStart()
+                }, 1000);
+            }else if (playerHand.value <= 21) {
+                $('#asktips').empty()
+                $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} stays with ${playerHand.value}. Dealer is drawing.</h1>`)
+                var waitingToDraw = setInterval(function () {
+                    if (dealerHand.value >= 17 && dealerHand.value <= 21) {
+                        clearInterval(waitingToDraw);
+                        $('#actionBar').empty()
+                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
+                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer stays on ${dealerHand.value}.</h1>`)
+                        if (dealerHand.value > playerHand.value) {
+                            $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer wins with ${dealerHand.value}.</h1>`)
+                            playerHand.chipCount = playerHand.chipCount - (setBet *2)
+                            $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
+                            console.log(playerHand.chipCount)
+                            setTimeout(function () {
+                                $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
+                                clickStart()
+                            }, 1000);
+                        } else if (playerHand.value > dealerHand.value) {
+                            $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} wins with ${playerHand.value}.</h1>`)
+                            playerHand.chipCount = playerHand.chipCount + (setBet * 2)
+                            $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
+                            console.log(playerHand.chipCount)
+                            setTimeout(function () {
+                                $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
+                                clickStart()
+                            }, 1000);
+                        } else if (playerHand.value === dealerHand.value) {
+                            $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} and Dealer push on ${playerHand.value}.</h1>`)
+                            $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
+                            setTimeout(function () {
+                                $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
+                                clickStart()
+                            }, 1000);
+                        }
+                    } else if (dealerHand.value > 21 && dealerHand.aces > 0) {
+                        dealerHand.aces -=
+                            dealerHand.value = dealerHand.value - 10
+                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
+                        if (dealerHand.value < 17) {
+                            drawCard(dealerHand)
+                            $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
+                            $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
+                        }
+                    } else if (dealerHand.value > 21) {
+                        clearInterval(waitingToDraw)
+                        $('#actionBar').empty()
+                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} wins ${setBet}</h1>`)
+                        playerHand.chipCount = playerHand.chipCount + setBet
+                        $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
+                        setTimeout(function () {
+                            $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
+                            clickStart()
+                        }, 1000);
+                    } else if (dealerHand.value < 17) {
+                        drawCard(dealerHand)
+                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
+                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
+                    }
+                }, 1000);
+            }
+        })
+
+
+        $('.stay').click(function playerDone () {
             $('#asktips').empty()
             $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} stays with ${playerHand.value}. Dealer is drawing.</h1>`)
             var waitingToDraw = setInterval(function () {
@@ -245,18 +350,6 @@
                         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
                     }
-                    // else if (dealerHand.value > 21) {
-                    //     clearInterval(waitingToDraw)
-                    //     $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-                    //     $('#actionBar').empty()
-                    //     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} wins ${setBet}</h1>`)
-                    //     playerHand.chipCount = playerHand.chipCount + setBet
-                    //     $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
-                    //     setTimeout(function () {
-                    //         $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
-                    //         clickStart()
-                    //     }, 1000);
-                    // }
                 } else if (dealerHand.value > 21) {
                     clearInterval(waitingToDraw)
                     $('#actionBar').empty()
@@ -323,12 +416,14 @@
                 value: 0,
                 drawn: [],
                 aces: 0,
-                chipCount: playerHand.chipCount
+                chipCount: playerHand.chipCount,
+                splitit: []
             };
             dealerHand = {
                 value: 0,
                 drawn: [],
-                aces: 0
+                aces: 0,
+                splitit: []
             };
             dealHands()
             displayPandD();
