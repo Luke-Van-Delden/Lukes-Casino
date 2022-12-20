@@ -1,8 +1,7 @@
 "use strict";
 
-//TODO: Create Cheatsheat for best play - Object, array, or if statement
-// CSS the Cards
-// add card images for each
+//TODO: SEPERATE THE VALUE AND DRAWN INTO SEPERATE ROWS, REFACTOR HTML REQUIRED
+// Create Cheatsheat for best play - Object, array, or if statement
 // add animation
 // create navbar at top to take to other games
 // refine style
@@ -123,7 +122,7 @@
         }
         $('#startUp').css('display', "none");
         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-        $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}`)
+        $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
         $('#actionBar').html(`<button type="button" class="btn btn-success mb-2 hit fontshadowing barButtons">Hit!</button>`)
         $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 stay fontshadowing barButtons">Stay!</button>`)
         $('#asktips').html(`<button type="button" class="btn btn-warning mb-2 tips fontshadowing barButtons" id="tips">What's the book say? (Not Currently Functional)</button>`)
@@ -133,7 +132,7 @@
             playerHand.value = 21
             playerHand.drawn = ["Ace of Franks", "Jack"]
             $('#actionBar').html(`<h1 class="altshadowing text-center">Blackjack! I can't believe you got the Ace of Franks!</h1>`)
-            var frankie = setTimeout(function () {
+            setTimeout(function () {
                 $('#actionBar').append(`<img src="images/dancing-dog.gif" alt="dogdance" id="kdawg">`)
             }, 3000);
             $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>Dealer showing ${dealerHand.drawn}</h1>`)
@@ -155,7 +154,7 @@
             } else if (playerHand.value > 21) {
                 $('#actionBar').html(`<h1 class="text-center altshadowing" id="busted">${playerName} busts with ${playerHand.value}</h1>`)
                 $('#asktips').empty()
-                var timeoutId = setTimeout(function () {
+                setTimeout(function () {
                     $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                     clickStart()
                 }, 1000);
@@ -173,19 +172,19 @@
                     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer stays on ${dealerHand.value}.</h1>`)
                     if (dealerHand.value > playerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer wins with ${dealerHand.value}.</h1>`)
-                        var dealerwinner = setTimeout(function () {
+                        setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
                         }, 1000);
                     } else if (playerHand.value > dealerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} wins with ${playerHand.value}.</h1>`)
-                        var playerwinner = setTimeout(function () {
+                        setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
                         }, 1000);
                     } else if (playerHand.value === dealerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} and Dealer push on ${playerHand.value}.</h1>`)
-                        var push = setTimeout(function () {
+                        setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
                         }, 1000);
@@ -202,7 +201,7 @@
                         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
                         $('#actionBar').empty()
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS!!!</h1>`)
-                        var timeoutId = setTimeout(function () {
+                        setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
                         }, 1000);
@@ -211,7 +210,7 @@
                     clearInterval(waitingToDraw)
                     $('#actionBar').empty()
                     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} WINS!!!</h1>`)
-                    var timeoutId = setTimeout(function () {
+                    setTimeout(function () {
                         $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                         clickStart()
                     }, 1000);
