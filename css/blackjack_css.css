@@ -3,11 +3,11 @@
 
 /*Classes*/
 
-.feltBackground{
+.feltBackground {
     background-image: url("../images/feltBackground.jpeg");
 }
 
-.header{
+.header {
     height: 20vh;
     display: flex;
     background-color: black;
@@ -17,14 +17,14 @@
     color: blanchedalmond;
 }
 
-.fontshadowing{
+.fontshadowing {
     color: white;
     font-family: 'Lobster', cursive;
     text-decoration: underline;
     text-shadow: 1px 1px 2px black, 0 0 1em gold, 0 0 0.2em blue;
 }
 
-.altshadowing{
+.altshadowing {
     color: white;
     font-family: 'Lobster', cursive;
     text-decoration: underline;
@@ -33,29 +33,30 @@
 
 /*ID's*/
 
-#playerNamer{
+#playerNamer {
     width: 75%;
     font-size: 2em;
     background-color: blanchedalmond;
 }
 
-#whatShouldWe{
+#whatShouldWe {
     color: black;
     font-family: 'Lobster', cursive;
     text-shadow: 1px 1px 2px blanchedalmond, 0 0 1em blanchedalmond, 0 0 0.2em blue;
 }
 
-#montyPython{
+#montyPython {
     width: 50%;
     margin: auto;
 }
 
-#kdawg{
+#kdawg {
     width: 50vw;
     height: 50vh;
     margin: auto;
 }
-#tips{
+
+#tips {
     color: white;
 }
 
@@ -66,11 +67,11 @@
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
+    width: 75%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -81,7 +82,8 @@
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
 }
-.modalbtn{
+
+.modalbtn {
     width: 75%;
 }
 
@@ -113,7 +115,7 @@
     padding: .25em;
     margin: 0 .5em .5em 0;
     text-align: center;
-    font-size: .5em; /* @change: adjust this value to make bigger or smaller cards */
+    font-size: 1em; /* @change: adjust this value to make bigger or smaller cards */
     font-weight: normal;
     font-family: Arial, sans-serif;
     position: relative;
@@ -122,11 +124,40 @@
     -webkit-box-shadow: .2em .2em .5em #333;
     box-shadow: .2em .2em .5em #333;
 }
-.cardText {}
 
-.red{
+.cardText {
+}
+
+.red {
     color: red;
 }
-.black{
+
+.black {
     color: black;
+}
+
+#currentChips{
+    position: fixed;
+    font-size: 2em;
+    left: 0px;
+    bottom: 0px;
+    text-decoration: none;
+}
+#currentBet{
+    position: fixed;
+    font-size: 2em;
+    right: 0px;
+    bottom: 0px;
+    text-decoration: none;
+}
+
+
+.modalTextSizing{
+    width: 60%;
+    font-size: 1.5em;
+    background-color: blanchedalmond;
+}
+
+#setInitialBet {
+    width: 35%;
 }

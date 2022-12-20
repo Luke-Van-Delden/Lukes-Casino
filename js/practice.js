@@ -1,6 +1,7 @@
 "use strict";
 
 //TODO: SEPERATE THE VALUE AND DRAWN INTO SEPERATE ROWS, REFACTOR HTML REQUIRED
+// ADD BETTING AND TRACKER
 // Create Cheatsheat for best play - Object, array, or if statement
 // add animation
 // create navbar at top to take to other games
@@ -23,7 +24,8 @@
     var playerHand = {
         value: 0,
         drawn: [],
-        aces: 0
+        aces: 0,
+        chipCount: 500
     };
     var dealerHand = {
         value: 0,
@@ -37,6 +39,13 @@
     const clubs = `<span class="black">&clubs;</span>`
     const frontdiv = `<div class="playingCard cardText">`
     const closediv = `</div>`
+
+    function updateChipTotal() {
+        let setChips = $('#currentChips').val()
+        let currentBet = $('#currentBet').val()
+        let updatedChips = setChips - currentBet
+        return updatedChips
+    }
 
 
     // Draws random card. Adds the value to playerhand.value and pushes to playerhand.drawn array
@@ -120,6 +129,17 @@
         if (playerName === "") {
             playerName = "Player"
         }
+        let setChips = $('#setChips').val()
+        if (setChips === ""){
+            setChips = 10000
+        }
+        let setBet = $('#setInitialBet').val()
+        if (setBet === ""){
+            setBet = 500
+        }
+        let updatedChips = setChips - setBet
+        $('#currentChips').html(`${playerName}'s chip total: ${updatedChips}`)
+        $('#currentBet').html(`Current Bet: ${setBet}`)
         $('#startUp').css('display', "none");
         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
         $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
@@ -172,6 +192,11 @@
                     $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer stays on ${dealerHand.value}.</h1>`)
                     if (dealerHand.value > playerHand.value) {
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer wins with ${dealerHand.value}.</h1>`)
+                        // TODO: WORKING ON UPDATING CHIP TOTAL AND BET INTERACTION
+                        // let setChips = $('#currentChips').val()
+                        // let currentBet = $('#currentBet').val()
+                        // let updatedChips = setChips - currentBet
+                        // $('#currentChips').html(`${updatedChips}`)
                         setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again</button>`)
                             clickStart()
@@ -240,16 +265,16 @@
 
     function randomSuit() {
         let randomnumber = ((Math.floor(Math.random() * 4)) + 1)
-        if (randomnumber === 1){
+        if (randomnumber === 1) {
             return heart
         }
-        if (randomnumber === 2){
+        if (randomnumber === 2) {
             return diamond
         }
-        if (randomnumber === 3){
+        if (randomnumber === 3) {
             return spades
         }
-        if (randomnumber === 4){
+        if (randomnumber === 4) {
             return clubs
         }
     }
