@@ -123,7 +123,7 @@
         }
         $('#startUp').css('display', "none");
         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-        $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
+        $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}`)
         $('#actionBar').html(`<button type="button" class="btn btn-success mb-2 hit fontshadowing barButtons">Hit!</button>`)
         $('#actionBar').append(`<button type="button" class="btn btn-danger mb-2 stay fontshadowing barButtons">Stay!</button>`)
         $('#asktips').html(`<button type="button" class="btn btn-warning mb-2 tips fontshadowing barButtons" id="tips">What's the book say? (Not Currently Functional)</button>`)
