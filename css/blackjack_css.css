@@ -131,21 +131,9 @@
     font-size: 1.5em;
     background-color: blanchedalmond;
 }
-/*!* The Close Button for Modal *!*/
-/*.close {*/
-/*    color: #aaa;*/
-/*    float: right;*/
-/*    font-size: 28px;*/
-/*    font-weight: bold;*/
-/*}*/
 
-/*.close:hover,*/
-/*.close:focus {*/
-/*    color: black;*/
-/*    text-decoration: none;*/
-/*    cursor: pointer;*/
-/*}*/
 
+/*MAKES THE PLAYING CARD IMAGE BACKGROUND*/
 /* Source = https://github.com/selfthinker/CSS-Playing-Cards/blob/master/cards.css*/
 .playingCard {
     display: inline-flex;

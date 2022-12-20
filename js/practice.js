@@ -1,13 +1,11 @@
 "use strict";
 
 //TODO: SEPERATE THE VALUE AND DRAWN INTO SEPERATE ROWS, REFACTOR HTML REQUIRED
-// ADD BETTING AND TRACKER
+// Add split functionality
 // Create Cheatsheat for best play - Object, array, or if statement
 // add animation
 // create navbar at top to take to other games
-// refine style
 // link to blackjack to learn for current value of cards (Think for me button)
-// Track Chips / bets
 // ON/Off switch for quickdeal
 
 (() => {
@@ -178,13 +176,13 @@
                 setInterval(function () {
                     if (counter < 1) {
                         // Couldn't figure out why Classes / ID's didnt work and required inline styling
-                        $('body').append(`<button style='color: red; margin-left: 10vw; font-size: 6em; width: 75vw; background-color: black' onClick="window.location.reload();">CLICK HERE TO CHANGE IDENTITY AND TAKE OUT HIGH INTEREST LOAN AND START OVER</button>`)
+                        $('body').append(`<button style='color: dodgerblue; margin-left: 10vw; font-size: 6em; width: 75vw; background-color: blanchedalmond' onClick="window.location.reload();">CLICK HERE TO CHANGE IDENTITY AND TAKE OUT HIGH INTEREST LOAN AND START OVER</button>`)
                         counter++
                     } else {
                         clearInterval()
                     }
                 }, 200)
-            }, 1000)
+            }, 15000)
         }
         //Cheat code for Kara
         if (playerName === "kdawg") {
@@ -231,6 +229,7 @@
             if (playerHand.value > 21 && playerHand.aces > 0) {
                 playerHand.aces -=
                     playerHand.value = playerHand.value - 10
+                $('#playerHand').html(`<h1 class="">${playerName}: ${playerHand.value}<br>${playerHand.drawn.join("")}</h1>`)
             }
             if (playerHand.value > 21) {
                 $('#actionBar').html(`<h1 class="text-center altshadowing" id="busted">${playerName} busts with ${playerHand.value}</h1>`)
@@ -242,7 +241,7 @@
                     $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
                     clickStart()
                 }, 1000);
-            }else if (playerHand.value <= 21) {
+            } else if (playerHand.value <= 21) {
                 $('#asktips').empty()
                 $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} stays with ${playerHand.value}. Dealer is drawing.</h1>`)
                 var waitingToDraw = setInterval(function () {
@@ -253,7 +252,7 @@
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer stays on ${dealerHand.value}.</h1>`)
                         if (dealerHand.value > playerHand.value) {
                             $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer wins with ${dealerHand.value}.</h1>`)
-                            playerHand.chipCount = playerHand.chipCount - (setBet *2)
+                            playerHand.chipCount = playerHand.chipCount - (setBet * 2)
                             $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
                             console.log(playerHand.chipCount)
                             setTimeout(function () {
@@ -281,16 +280,11 @@
                         dealerHand.aces -=
                             dealerHand.value = dealerHand.value - 10
                         $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-                        if (dealerHand.value < 17) {
-                            drawCard(dealerHand)
-                            $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-                            $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
-                        }
                     } else if (dealerHand.value > 21) {
                         clearInterval(waitingToDraw)
                         $('#actionBar').empty()
                         $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer busts with ${dealerHand.value}. ${playerName} wins ${setBet}</h1>`)
-                        playerHand.chipCount = playerHand.chipCount + setBet
+                        playerHand.chipCount = playerHand.chipCount + (setBet * 2)
                         $('#currentChips').html(`${playerName}'s chip total: ${playerHand.chipCount}`)
                         setTimeout(function () {
                             $('#actionBar').append(`<button type="button" class="btn btn-success mb-2 acceptGame fontshadowing">Play again (${setBet})</button>`)
@@ -306,7 +300,7 @@
         })
 
 
-        $('.stay').click(function playerDone () {
+        $('.stay').click(function playerDone() {
             $('#asktips').empty()
             $('#actionBar').html(`<h1 class="text-center altshadowing">${playerName} stays with ${playerHand.value}. Dealer is drawing.</h1>`)
             var waitingToDraw = setInterval(function () {
@@ -345,11 +339,6 @@
                     dealerHand.aces -=
                         dealerHand.value = dealerHand.value - 10
                     $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-                    if (dealerHand.value < 17) {
-                        drawCard(dealerHand)
-                        $('#dealerHand').html(`<h1 class="">Dealer: ${dealerHand.value}<br>${dealerHand.drawn.join("")}</h1>`)
-                        $('#actionBar').html(`<h1 class="text-center altshadowing">Dealer has ${dealerHand.value}.</h1>`)
-                    }
                 } else if (dealerHand.value > 21) {
                     clearInterval(waitingToDraw)
                     $('#actionBar').empty()
@@ -453,15 +442,4 @@
             displayPandD()
         }
     })
-
-    // $('.close').click(function () {
-    //     $('#startUp').css('display', "none");
-    // })
-
-    // TODO: Work on this so modal disappears when not clicking on it
-    // window.onclick = function(event) {
-    //     if (event.target == $('#myModal')) {
-    //         $('#myModal').css('display', 'none')
-    //     }
-    // }
 })();
