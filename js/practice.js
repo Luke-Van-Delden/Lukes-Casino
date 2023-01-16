@@ -2,6 +2,9 @@
 
 //TODO: SEPERATE THE VALUE AND DRAWN INTO SEPERATE ROWS, REFACTOR HTML REQUIRED
 // Add split functionality
+// Add multihand
+// Add chips
+// Clean up updating of bets and chip count
 // Create Cheatsheat for best play - Object, array, or if statement
 // add animation
 // create navbar at top to take to other games
@@ -32,8 +35,6 @@
         aces: 0,
         splitit: []
     };
-
-    var hitCounter = 0
 
     var numberOfHands = 0
     const heart = `<span class="red">&hearts;</span>`
@@ -197,7 +198,7 @@
         }
 
         $('#asktips').click(function () {
-            $('#asktips').append(`<div class="d-flex justify-content-center"><h1 class="altshadowing">The book says to !</h1></div>`)
+            $('#asktips').append(`<div class="d-flex justify-content-center"><h1 class="altshadowing">The book says to ${whatTheBookSays(playerHand.value)}!</h1></div>`)
         })
 
 
@@ -386,6 +387,28 @@
         }
         if (randomnumber === 4) {
             return clubs
+        }
+    }
+
+    function whatTheBookSays(x) {
+        if (x === 4) {
+            return "hit";
+        } else if (x === 5) {
+            return "hit";
+        } else if (x === 6) {
+            return "hit";
+        } else if (x === 7) {
+            return "hit";
+        } else if (x === 8) {
+            return "hit";
+        } else if (x === 9) {
+            return "hit";
+        } else if (x === 10) {
+            return "hit";
+        } else if (x === 11) {
+            return "double down";
+        } else if (x === 12) {
+            return "hit";
         }
     }
 
